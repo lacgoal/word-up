@@ -107,16 +107,11 @@ function checkIfWordIsReal(word) {
  * Updates everything on screen based on the current state of the model
  */
 function render() {
-
     // PREGAME ---------------------------------
-
     // update the score on the scoreboard
     $("#current-score").text(currentScore());
-
-    // TODO 2
     // Update the curent time remaining on the scoreboard.
-
-
+    $("#time-remaining").text(model.secondsRemaining);
     // if the game has not started yet, just hide the #game container and exit
     if (model.gameHasStarted == false) {
         $("#game").hide();
@@ -124,7 +119,6 @@ function render() {
     }
 
     // GAME -------------------------------------
-
     // clear stuff
     $("#allowed-letters").empty();
     $("#word-submissions").empty();
@@ -145,9 +139,8 @@ function render() {
 
     // Set the value of the textbox
     $("#textbox").val(model.currentAttempt);
-    // TODO 3
-    // Give focus to the textbox.
-
+    // Give focus to the textbox (https://api.jquery.com/focus/)
+    $( "#textbox" ).focus();
 
     // if the current word attempt contains disallowed letters,
     var disallowedLetters = disallowedLettersInWord(model.currentAttempt);
