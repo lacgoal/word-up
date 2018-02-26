@@ -230,12 +230,13 @@ $(document).ready(function() {
         startGame();
         render();
     });
-
-    // TODO 6
     // Add another event handler with a callback function.
     // When the textbox content changes,
-    // update the .currentAttempt property of the model and re-render
-
+    $("#textbox").on("input", function() {
+      // update the .currentAttempt property of the model and re-render
+      model.currentAttempt = $(this).val();
+      render();
+    });
 
     // when the form is submitted
     $("#word-attempt-form").submit(function(evt) {
@@ -270,10 +271,8 @@ var scrabblePointsForEachLetter = {
  * meaning it is not a member of the .allowedLetters list from the current model
  */
 function isDisallowedLetter(letter) {
-    // TODO 7
-    // This should return true if the letter is not an element of
-    // the .allowedLetters list in the model
-    return false;
+    // This should return true if the letter is not an element of the .allowedLetters list in the model
+    return model.allowedLetters.indexOf(letter)==-1;
 }
 
 /**
