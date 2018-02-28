@@ -122,9 +122,10 @@ function render() {
     // clear stuff
     $("#allowed-letters").empty();
     $("#word-submissions").empty();
-    // TODO 10
-    // Add a few things to the above code block (underneath "// clear stuff").
 
+    // Add a few things to the above code block (underneath "// clear stuff").
+    $("#textbox").removeClass("bad-attempt").attr("disabled", false);
+    $(".disallowed-letter").remove();
 
     // reveal the #game container
     $("#game").show();
@@ -133,9 +134,11 @@ function render() {
     var letterChips = model.allowedLetters.map(letterChip)
     $("#allowed-letters").append(letterChips);
 
+
     // TODO 11
     // Render the word submissions
-
+    var wordChips = model.wordSubmissions.map(wordSubmissionChip);
+    $("#word-submissions").append(wordChips);
 
     // Set the value of the textbox
     $("#textbox").val(model.currentAttempt);
@@ -150,18 +153,16 @@ function render() {
 
         // show the disallowed letters underneath
         var redLetterChips = disallowedLetters.map(disallowedLetterChip);
-
-        // TODO 8
         // append the red letter chips to the form
+        $("#word-attempt-form").append(redLetterChips);
 
     }
 
     // if the game is over
     var gameOver = model.secondsRemaining <= 0
     if (gameOver) {
-        // TODO 9
         // disable the text box and clear its contents
-
+        $("#textbox").attr("disabled", true).val("");
     }
 }
 
